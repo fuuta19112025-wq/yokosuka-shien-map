@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浦賀・鴨居エリア 物資支援マップ(試作版)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>浦賀・鴨居エリア 物資支援マップ</h1>
+  <p class="sub">避難所ごとの「欲しいもの」と、届けられる人の「あるもの・運べます」をつなぐための試作サイトです</p>
+</header>
+
+<div class="notice">
+  <strong>これは試作段階のデモです。</strong>
+  表示されている投稿はサンプルデータで、実際の投稿ではありません。避難所の位置情報は横須賀市公式資料(令和7年4月時点)を元にしています。
+</div>
+
+<section id="map" aria-label="避難所マップ"></section>
+
+<section class="filters">
+  <button class="filter-btn active" data-type="all">すべて</button>
+  <button class="filter-btn" data-type="欲しい">欲しい</button>
+  <button class="filter-btn" data-type="ある">ある</button>
+  <button class="filter-btn" data-type="運べる">運べる</button>
+  <button class="filter-btn" data-type="道路情報">通れない道</button>
+  <button class="filter-btn" data-type="迷子ペット">迷子ペット</button>
+  <button class="filter-btn" data-type="お知らせ">給水・トイレ等</button>
+</section>
+
+<main id="list"></main>
+
+<footer>
+  <p>避難所データ出典:<a href="https://www.city.yokosuka.kanagawa.jp/0525/bousainavi/sonae/hinan/hinanbasyo.html" target="_blank" rel="noopener">横須賀市 震災時避難所一覧(令和7年4月現在)</a></p>
+  <p>投稿は個人の連絡先を公開しない形(地区名・所属のみ)で表示する方針です。今後、避難所スタッフ・地区の代表者が投稿できるGoogleフォームと連携予定です。</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

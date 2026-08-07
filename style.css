@@ -1,0 +1,131 @@
+:root {
+  --navy: #1a3d6d;
+  --yellow: #ffe14d;
+  --need: #d64545;
+  --have: #2f9e44;
+  --carry: #2b6cb0;
+  --hazard: #e8720c;
+  --pet: #8854d0;
+  --info: #0b8793;
+  --bg: #f7f7f5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic", -apple-system, sans-serif;
+  background: var(--bg);
+  color: #222;
+}
+
+header {
+  background: var(--navy);
+  color: #fff;
+  padding: 20px 16px;
+  text-align: center;
+}
+header h1 { margin: 0 0 6px; font-size: 1.4rem; }
+header .sub { margin: 0; font-size: 0.9rem; opacity: 0.9; }
+
+.notice {
+  background: #fff8e1;
+  border: 1px solid var(--yellow);
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+#map {
+  height: 320px;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  border: 1px solid var(--navy);
+  background: #fff;
+  color: var(--navy);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.filter-btn.active {
+  background: var(--navy);
+  color: #fff;
+}
+
+main#list {
+  padding: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-left: 6px solid #ccc;
+}
+.card.type-欲しい { border-left-color: var(--need); }
+.card.type-ある { border-left-color: var(--have); }
+.card.type-運べる { border-left-color: var(--carry); }
+.card.type-道路情報 { border-left-color: var(--hazard); }
+.card.type-迷子ペット { border-left-color: var(--pet); }
+.card.type-お知らせ { border-left-color: var(--info); }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: #fff;
+}
+.badge.type-欲しい { background: var(--need); }
+.badge.type-ある { background: var(--have); }
+.badge.type-運べる { background: var(--carry); }
+.badge.type-道路情報 { background: var(--hazard); }
+.badge.type-迷子ペット { background: var(--pet); }
+.badge.type-お知らせ { background: var(--info); }
+
+.card .item {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin: 4px 0;
+}
+.card .meta {
+  font-size: 0.8rem;
+  color: #666;
+}
+.card .note {
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #444;
+}
+
+footer {
+  padding: 16px;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+}
+footer a { color: var(--navy); }

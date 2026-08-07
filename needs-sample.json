@@ -1,0 +1,9 @@
+[
+  { "id": 1, "shelter_id": "uraga-sho", "type": "欲しい", "item": "紙おむつ(Mサイズ)", "qty": "20枚ほど", "poster": "避難所スタッフ", "note": "乳児連れの世帯が数世帯滞在中", "time": "2026-08-07 09:15" },
+  { "id": 2, "shelter_id": "uraga-sho", "type": "欲しい", "item": "生理用品", "qty": "不明・数があれば", "poster": "避難所スタッフ", "note": "", "time": "2026-08-07 09:20" },
+  { "id": 3, "shelter_id": "kamoi-sho", "type": "欲しい", "item": "毛布", "qty": "10枚", "poster": "地区自治会", "note": "夜間の冷え込み対策", "time": "2026-08-07 10:02" },
+  { "id": 4, "shelter_id": "kosaka-sho", "type": "欲しい", "item": "飲料水", "qty": "できるだけ多く", "poster": "避難所スタッフ", "note": "断水中", "time": "2026-08-07 08:40" },
+  { "id": 5, "shelter_id": null, "type": "ある", "item": "紙おむつ(Mサイズ)", "qty": "30枚", "poster": "地区の支援者", "note": "浦賀エリアなら届けられます", "time": "2026-08-07 11:00" },
+  { "id": 6, "shelter_id": null, "type": "運べる", "item": "車で物資運搬可能", "qty": "軽自動車1台分", "poster": "ボランティア", "note": "午後なら鴨居・走水方面まで対応可", "time": "2026-08-07 11:30" },
+  { "id": 7, "shelter_id": "hashirimizu-sho", "type": "欲しい", "item": "非常用トイレ", "qty": "不明", "poster": "避難所スタッフ", "note": "", "time": "2026-08-07 12:10" }
+]

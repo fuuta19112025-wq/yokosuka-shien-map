@@ -5,6 +5,14 @@ let currentFilter = "all";
 let map, markers = [];
 
 const INFO_EMOJI = { "給水": "💧", "トイレ": "🚻", "充電": "🔌", "炊き出し": "🍚" };
+const TYPE_EMOJI = {
+  "欲しい": "🙏",
+  "ある": "📦",
+  "運べる": "🚗",
+  "道路情報": "⚠",
+  "迷子ペット": "🐾",
+  "お知らせ": "ℹ"
+};
 const TYPE_LABEL = {
   "欲しい": s => shelterLabel(s),
   "ある": s => shelterLabel(s),
@@ -56,8 +64,7 @@ async function loadSampleData() {
     qty: "",
     poster: "投稿者",
     note: h.note,
-    time: h.time,
-    latlon: [h.lat, h.lon]
+    time: h.time
   }));
   const petItems = pets.map(p => ({
     type: "迷子ペット",
@@ -66,8 +73,7 @@ async function loadSampleData() {
     qty: "",
     poster: p.contact,
     note: `${p.feature} / ${p.place}`,
-    time: p.time,
-    latlon: [p.lat, p.lon]
+    time: p.time
   }));
   const infoItems = infos.map(i => ({
     type: "お知らせ",
@@ -76,8 +82,7 @@ async function loadSampleData() {
     qty: "",
     poster: "避難所スタッフ",
     note: i.note,
-    time: i.time,
-    latlon: [i.lat, i.lon]
+    time: i.time
   }));
 
   liveItems = [...needItems, ...hazardItems, ...petItems, ...infoItems];
@@ -128,47 +133,28 @@ async function loadData() {
   await loadSampleData();
 }
 
-function makeDivIcon(bg, glyph) {
-  return L.divIcon({
-    className: "",
-    html: `<div style="background:${bg};color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 0 0 2px #fff;">${glyph}</div>`,
-    iconSize: [26, 26],
-    iconAnchor: [13, 13]
-  });
-}
-
-function iconForItem(it) {
-  if (it.type === "道路情報") return makeDivIcon("#e8720c", "⚠");
-  if (it.type === "迷子ペット") return makeDivIcon("#8854d0", "🐾");
-  if (it.type === "お知らせ") {
-    const emoji = Object.entries(INFO_EMOJI).find(([k]) => it.item.includes(k));
-    return makeDivIcon("#0b8793", emoji ? emoji[1] : "ℹ");
-  }
-  return null; // 欲しい/ある/運べるは避難所マーカーのポップアップに集約
-}
-
 function initMap() {
   map = L.map("map").setView([35.252, 139.720], 14);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
+  // 種類ごとに単独ピンを立てると同じ避難所に何件も重なって見づらくなるため、
+  // すべての投稿は避難所のピン1つに集約し、種類ごとの件数をポップアップに表示する
   shelters.forEach(s => {
-    const needCount = liveItems.filter(it => it.shelter && it.shelter.id === s.id && it.type === "欲しい").length;
+    const counts = {};
+    liveItems
+      .filter(it => it.shelter && it.shelter.id === s.id)
+      .forEach(it => { counts[it.type] = (counts[it.type] || 0) + 1; });
+
+    const countLines = Object.entries(counts)
+      .map(([type, n]) => `${TYPE_EMOJI[type] || ""} ${type}: ${n}件`)
+      .join("<br>");
+
     const marker = L.marker([s.lat, s.lon]).addTo(map);
     marker.bindPopup(
-      `<strong>${s.name}</strong><br>${s.addr}<br>現在の「欲しい」投稿: ${needCount}件`
+      `<strong>${s.name}</strong><br>${s.addr}<br>${countLines || "投稿はまだありません"}`
     );
-    markers.push(marker);
-  });
-
-  liveItems.forEach(it => {
-    const icon = iconForItem(it);
-    if (!icon) return; // 欲しい/ある/運べるは地図上は避難所マーカーで代表させる
-    const pos = it.latlon || (it.shelter ? [it.shelter.lat, it.shelter.lon] : null);
-    if (!pos) return; // 位置情報がない投稿は一覧のみ表示
-    const marker = L.marker(pos, { icon }).addTo(map);
-    marker.bindPopup(`<strong>${it.item}</strong><br>${it.note || ""}<br><span style="color:#888;font-size:12px;">${it.time}</span>`);
     markers.push(marker);
   });
 }

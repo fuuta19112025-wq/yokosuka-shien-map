@@ -7,6 +7,7 @@
   --hazard: #e8720c;
   --pet: #8854d0;
   --info: #0b8793;
+  --resolved: #16a34a;
   --bg: #f7f7f5;
 }
 
@@ -94,6 +95,7 @@ main#list {
 .card.type-道路情報 { border-left-color: var(--hazard); }
 .card.type-迷子ペット { border-left-color: var(--pet); }
 .card.type-お知らせ { border-left-color: var(--info); }
+.card.type-解決済み { border-left-color: var(--resolved); }
 
 .card-top {
   display: flex;
@@ -116,6 +118,7 @@ main#list {
 .badge.type-道路情報 { background: var(--hazard); }
 .badge.type-迷子ペット { background: var(--pet); }
 .badge.type-お知らせ { background: var(--info); }
+.badge.type-解決済み { background: var(--resolved); }
 
 .card .item {
   font-size: 1.05rem;

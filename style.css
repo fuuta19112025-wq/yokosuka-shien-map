@@ -36,8 +36,64 @@ header .sub { margin: 0; font-size: 0.9rem; opacity: 0.9; }
   font-weight: bold;
   padding: 10px 24px;
   border-radius: 24px;
+  border: none;
   text-decoration: none;
   font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.post-form {
+  max-width: 640px;
+  margin: 16px auto 0;
+  padding: 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.post-form.hidden { display: none; }
+.post-form h2 { margin: 0 0 12px; font-size: 1.1rem; color: var(--navy); }
+.post-form label {
+  display: block;
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+.post-form input,
+.post-form select,
+.post-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.post-form textarea { min-height: 60px; resize: vertical; }
+.post-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.post-form-actions button[type="button"] {
+  background: #eee;
+  color: #444;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  margin-top: 8px;
+  background: none;
+  border: 1px solid var(--need);
+  color: var(--need);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  cursor: pointer;
 }
 
 .notice {

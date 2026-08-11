@@ -1,0 +1,25 @@
+name: Smoke Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm init -y > /dev/null
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Run smoke test
+        run: node .github/scripts/smoke-test.js

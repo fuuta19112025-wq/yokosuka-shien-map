@@ -12,8 +12,39 @@
 <header>
   <h1>浦賀・鴨居エリア 物資支援マップ</h1>
   <p class="sub">避難所ごとの「欲しいもの」と、届けられる人の「あるもの・運べます」をつなぐための試作サイトです</p>
-  <a class="post-btn" href="https://forms.gle/AuScUMUJJeL4bJdU7" target="_blank" rel="noopener">📝 情報を投稿する</a>
+  <button id="postToggleBtn" class="post-btn" type="button">📝 情報を投稿する</button>
 </header>
+
+<section id="postForm" class="post-form hidden">
+  <h2>投稿する</h2>
+  <form id="postFormEl">
+    <label>投稿の種類
+      <select name="type" required>
+        <option value="欲しい">欲しい</option>
+        <option value="ある">ある</option>
+        <option value="運べる">運べる</option>
+        <option value="道路情報">道路情報</option>
+        <option value="迷子ペット">迷子ペット</option>
+        <option value="お知らせ">お知らせ</option>
+        <option value="解決済み">解決済み</option>
+      </select>
+    </label>
+    <label>近くの避難所
+      <select name="shelter_id" id="postShelter">
+        <option value="">エリア全体</option>
+      </select>
+    </label>
+    <label>品目・内容<input name="item" required></label>
+    <label>数量・詳細<input name="qty"></label>
+    <label>具体的な場所<input name="place"></label>
+    <label>投稿者(任意)<input name="poster" placeholder="例: 浦賀小スタッフ"></label>
+    <label>備考<textarea name="note"></textarea></label>
+    <div class="post-form-actions">
+      <button type="submit" class="post-btn">投稿する</button>
+      <button type="button" id="postCancelBtn">閉じる</button>
+    </div>
+  </form>
+</section>
 
 <div class="notice">
   <strong>これは試作段階のデモです。</strong>
@@ -37,11 +68,11 @@
 
 <footer>
   <p>避難所データ出典:<a href="https://www.city.yokosuka.kanagawa.jp/0525/bousainavi/sonae/hinan/hinanbasyo.html" target="_blank" rel="noopener">横須賀市 震災時避難所一覧(令和7年4月現在)</a></p>
-  <p>投稿は個人の連絡先を公開しない形(地区名・所属のみ)で表示する方針です。ページ上部の「情報を投稿する」ボタンから、どなたでもGoogleフォームで投稿できます。</p>
+  <p>投稿は個人の連絡先を公開しない形(地区名・所属のみ)で表示する方針です。ページ上部の「情報を投稿する」ボタンから、どなたでも匿名で投稿できます。自分が投稿した内容は一覧から削除できます。</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
 </body>

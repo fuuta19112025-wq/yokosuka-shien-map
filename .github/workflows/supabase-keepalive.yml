@@ -12,6 +12,9 @@ jobs:
       - name: Ping Supabase to prevent free-tier auto-pause
         run: |
           curl -sS -o /dev/null -w "status: %{http_code}\n" \
-            "${{ secrets.SUPABASE_URL }}/rest/v1/posts?select=id&limit=1" \
+            -X PATCH \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/keepalive?id=eq.1" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"pinged_at": "now"}'
